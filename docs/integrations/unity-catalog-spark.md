@@ -88,34 +88,32 @@ You can run the code below to work with data stored in the `unity` catalog that 
 
 !!! warning "Catalog name in configs"
 
-    If you want to work with data stored in another catalog, make sure to change `unity` in the Spark configs to `<your_catalog_name>`, e.g. `spark.sql.catalog.<your_catalog_name>`.
+    If you want to work with data stored in another catalog, make sure to change `unity` in the Spark configs to `<your_catalog_name>` (e.g., `spark.sql.catalog.<your_catalog_name>`).
 
 === "Spark SQL"
 
     ```sh
-    bin/spark-sql --name "local-uc-test" \
-        --master "local[*]" \
+    bin/spark-sql \
+        --name "local-uc-test" \
         --packages "io.delta:delta-spark_2.12:3.2.1,io.unitycatalog:unitycatalog-spark_2.12:0.2.0" \
         --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" \
+        --conf "spark.sql.defaultCatalog=unity" \
         --conf "spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog" \
-        --conf "spark.sql.catalog.<catalog_name>=io.unitycatalog.spark.UCSingleCatalog" \
-        --conf "spark.sql.catalog.<catalog_name>.uri=http://localhost:8080" \
-        --conf "spark.sql.catalog.<catalog_name>.token=" \
-        --conf "spark.sql.defaultCatalog=<catalog_name>"
+        --conf "spark.sql.catalog.unity=io.unitycatalog.spark.UCSingleCatalog" \
+        --conf "spark.sql.catalog.unity.uri=http://localhost:8080"
     ```
 
 === "PySpark"
 
     ```sh
-    bin/pyspark --name "local-uc-test" \
-        --master "local[*]" \
+    bin/pyspark \
+        --name "local-uc-test" \
         --packages "io.delta:delta-spark_2.12:3.2.1,io.unitycatalog:unitycatalog-spark_2.12:0.2.0" \
         --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" \
+        --conf "spark.sql.defaultCatalog=unity" \
         --conf "spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog" \
-        --conf "spark.sql.catalog.<catalog_name>=io.unitycatalog.spark.UCSingleCatalog" \
-        --conf "spark.sql.catalog.<catalog_name>.uri=http://localhost:8080" \
-        --conf "spark.sql.catalog.<catalog_name>.token=" \
-        --conf "spark.sql.defaultCatalog=<catalog_name>"
+        --conf "spark.sql.catalog.unity=io.unitycatalog.spark.UCSingleCatalog" \
+        --conf "spark.sql.catalog.unity.uri=http://localhost:8080"
     ```
 
 !!! tip "Tip"
