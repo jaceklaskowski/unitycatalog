@@ -1,0 +1,12 @@
+object Versions {
+  val antlrVersion = "4.13.1"
+  val deltaVersion = "3.2.1"
+  val jacksonVersion = "2.19.0"
+  val log4jVersion = "2.24.3"
+  val openApiToolsJacksonBindNullableVersion = "0.2.6"
+  val orgApacheHttpVersion = "4.5.14"
+  val scala212 = "2.12.15"
+  val scala213 = "2.13.14"
+  val slf4jVersion = "2.0.17"
+  val sparkVersion = "4.0.0"
+}

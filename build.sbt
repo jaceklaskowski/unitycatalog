@@ -5,6 +5,7 @@ import sbt.{Attributed, util}
 import sbt.Keys.*
 import sbtlicensereport.license.{DepModuleInfo, LicenseCategory, LicenseInfo}
 import ReleaseSettings.*
+import Versions.*
 
 import scala.language.implicitConversions
 
@@ -16,20 +17,6 @@ val artifactNamePrefix = "unitycatalog"
 // until Spark 4 comes out with newer Java compatibility
 lazy val javacRelease11 = Seq("--release", "11")
 lazy val javacRelease17 = Seq("--release", "17")
-
-lazy val scala212 = "2.12.15"
-lazy val scala213 = "2.13.14"
-
-lazy val deltaVersion = "3.2.1"
-lazy val sparkVersion = "4.0.0"
-
-// Library versions
-lazy val antlrVersion = "4.13.1"
-lazy val jacksonVersion = "2.17.0"
-lazy val openApiToolsJacksonBindNullableVersion = "0.2.6"
-lazy val log4jVersion = "2.24.3"
-lazy val slf4jVersion = "2.0.13"
-val orgApacheHttpVersion = "4.5.14"
 
 lazy val commonSettings = Seq(
   organization := orgName,
@@ -308,7 +295,7 @@ lazy val server = (project in file("server"))
     mainClass := Some(orgName + ".server.UnityCatalogServer"),
     commonSettings,
     javaOnlyReleaseSettings,
-    javafmtCheckSettings,
+    javafmtCheckSettings(),
     javaCheckstyleSettings(file("dev") / "checkstyle-config.xml"),
     Compile / compile / javacOptions ++= Seq(
       "-processor",
