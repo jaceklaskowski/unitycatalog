@@ -26,7 +26,7 @@ import scala.language.existentials
  */
 class UCSingleCatalog extends TableCatalog with SupportsNamespaces with Logging {
 
-  private[this] var apiClient: ApiClient = null;
+  private[this] var apiClient: ApiClient = null
   private[this] var temporaryCredentialsApi: TemporaryCredentialsApi = null
 
   @volatile private var delegate: TableCatalog = null
